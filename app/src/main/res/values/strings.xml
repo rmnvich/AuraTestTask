@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AuraTestTask</string>
+
+    <string name="notification_boots_title">Boots information</string>
 </resources>
