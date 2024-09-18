@@ -1,10 +1,11 @@
-package com.aura.test.vromanovich
+package com.aura.test.vromanovich.presentation.activity
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.aura.test.vromanovich.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
