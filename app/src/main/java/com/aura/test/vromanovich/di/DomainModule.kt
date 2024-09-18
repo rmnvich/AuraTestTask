@@ -1,7 +1,9 @@
 package com.aura.test.vromanovich.di
 
-import com.aura.test.vromanovich.domain.usecase.IsNotificationShownUseCase
-import com.aura.test.vromanovich.domain.usecase.IsNotificationShownUseCaseImpl
+import com.aura.test.vromanovich.domain.usecase.notification.shown.get.IsNotificationShownUseCase
+import com.aura.test.vromanovich.domain.usecase.notification.shown.get.IsNotificationShownUseCaseImpl
+import com.aura.test.vromanovich.domain.usecase.notification.shown.set.SetNotificationShownUseCase
+import com.aura.test.vromanovich.domain.usecase.notification.shown.set.SetNotificationShownUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,4 +15,7 @@ interface DomainModule {
 
     @Binds
     fun bindIsNotificationShownUseCase(impl: IsNotificationShownUseCaseImpl): IsNotificationShownUseCase
+
+    @Binds
+    fun bindSetNotificationShownUseCase(impl: SetNotificationShownUseCaseImpl): SetNotificationShownUseCase
 }
