@@ -1,4 +1,4 @@
-package com.aura.test.vromanovich.domain.usecase
+package com.aura.test.vromanovich.domain.usecase.notification.shown.get
 
 interface IsNotificationShownUseCase {
 

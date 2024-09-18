@@ -1,4 +1,4 @@
-package com.aura.test.vromanovich.domain.usecase
+package com.aura.test.vromanovich.domain.usecase.notification.shown.get
 
 import com.aura.test.vromanovich.domain.repository.NotificationsRepository
 import javax.inject.Inject
