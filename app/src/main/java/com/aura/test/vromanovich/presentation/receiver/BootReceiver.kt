@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
+import com.aura.test.vromanovich.domain.usecase.boots.last.set.SetLastBootTimestampUseCase
 import com.aura.test.vromanovich.domain.usecase.notification.shown.get.IsNotificationShownUseCase
 import com.aura.test.vromanovich.domain.usecase.notification.shown.set.SetNotificationShownUseCase
 import com.aura.test.vromanovich.presentation.notification.BootNotificationManager
@@ -30,16 +31,20 @@ class BootReceiver : BroadcastReceiver() {
     @Inject
     lateinit var setNotificationShownUseCase: SetNotificationShownUseCase
 
+    @Inject
+    lateinit var setLastBootTimestampUseCase: SetLastBootTimestampUseCase
+
     override fun onReceive(context: Context, intent: Intent) {
         if (Intent.ACTION_BOOT_COMPLETED == intent.action) {
             // This is legal to use GlobalScope here, because this receiver lives while the process lives,
             // and it doesn't bounded with any lifecycle component, so leak is impossible here.
             @OptIn(DelicateCoroutinesApi::class)
-            GlobalScope.launch {
+            GlobalScope.launch(Dispatchers.IO) {
                 // TODO: Better provide interface with dispatchers using DI.
-                val isNotificationShown = withContext(Dispatchers.IO) {
-                    isNotificationShownUseCase()
-                }
+                val timestamp = System.currentTimeMillis()
+                setLastBootTimestampUseCase(timestamp)
+
+                val isNotificationShown = isNotificationShownUseCase()
                 withContext(Dispatchers.Main) {
                     if (isNotificationShown) {
                         showNotification(context)
