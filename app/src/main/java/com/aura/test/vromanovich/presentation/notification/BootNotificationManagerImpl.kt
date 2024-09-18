@@ -13,6 +13,7 @@ class BootNotificationManagerImpl(
         context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
     }
 
+    //TODO: Implement dismissing notifications
     override fun showNotification(body: String) {
         val notification = NotificationCompat.Builder(context, BOOTS_INFORMATION_CHANNEL_ID)
             .setSmallIcon(R.mipmap.ic_launcher)

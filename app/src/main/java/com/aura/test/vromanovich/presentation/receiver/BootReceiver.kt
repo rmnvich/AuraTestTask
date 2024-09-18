@@ -40,8 +40,9 @@ class BootReceiver : BroadcastReceiver() {
             // and it doesn't bounded with any lifecycle component, so leak is impossible here.
             @OptIn(DelicateCoroutinesApi::class)
             GlobalScope.launch(Dispatchers.IO) {
-                // TODO: Better provide interface with dispatchers using DI.
+                //TODO: Better provide interface with dispatchers using DI.
                 val timestamp = System.currentTimeMillis()
+                //TODO: Implement saving of many boots, not only the last one
                 setLastBootTimestampUseCase(timestamp)
 
                 val isNotificationShown = isNotificationShownUseCase()
@@ -66,6 +67,7 @@ class BootReceiver : BroadcastReceiver() {
         }
     }
 
+    //TODO: Implement rescheduling work
     private suspend fun scheduleNotification(context: Context) {
         val notificationWorkId = UUID.randomUUID()
         val notificationWork = OneTimeWorkRequest.Builder(NotificationWorker::class.java)
